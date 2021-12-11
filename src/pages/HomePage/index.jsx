@@ -8,6 +8,7 @@ import AddNewUserForm from "../../_components/addUserForm/index"
 const HomePage = () => {
   const dispatch = useDispatch();
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [newUserArray, setArray] = useState();
   const [name, setName] = useState();
   const authentication = useSelector((state) => state.authentication);
   const { user } = useSelector((state) => state.userReducers);
@@ -81,18 +82,30 @@ const setNameValue =(value) =>{
     setModalVisibility(false)
     dispatch(userActions.addNewUser(value))
 }
+const searchUsers =(e) => {
+ if(e.target.value){
+    const newArray = userLists.filter((item) => (
+        item.name.toLocaleUpperCase().includes(e.target.value.toLocaleUpperCase()))
+        );
+      setArray(newArray);
+  
+    }
+    
+    
+}
   return (
     <>
       <h1 className="homepage-heading"> Hello {authentication.user.username}</h1>
       <Row style={{justifyContent:"flex-end", paddingBottom:"2%"}}>
           <Col span={8}>
-          <Input placeholder="Search here"/>
+          <Input placeholder="Search here" onChange={searchUsers}/>
           </Col>
           <Col span={8} style={{paddingLeft:"2%"}}>
           <Button onClick={openModal}>Add New User</Button>
           </Col>
       </Row>
-      <Table columns={columns} dataSource={userLists} />
+      {newUserArray ? <Table columns={columns} dataSource={newUserArray}/> :  <Table columns={columns} dataSource={userLists} />}
+     
       <AddNewUserForm modalVisibility={modalVisibility} setModalVisibility={closeModal} setNameValue={setNameValue}/>
     </>
   );

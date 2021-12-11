@@ -83,15 +83,16 @@ const setNameValue =(value) =>{
     dispatch(userActions.addNewUser(value))
 }
 const searchUsers =(e) => {
- if(e.target.value){
+ if(e.target.value != ""){
     const newArray = userLists.filter((item) => (
         item.name.toLocaleUpperCase().includes(e.target.value.toLocaleUpperCase()))
         );
       setArray(newArray);
   
-    }
-    
-    
+    } 
+    else{
+        setArray()
+    } 
 }
   return (
     <>

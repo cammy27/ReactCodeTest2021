@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import userActions from "../../_actions/user.actions";
 import { Table ,Row, Col, Button,Modal, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { Content } from "antd/lib/layout/layout";
+
+import AddNewUserForm from "../../_components/addUserForm/index"
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [name, setName] = useState();
   const authentication = useSelector((state) => state.authentication);
   const { user } = useSelector((state) => state.userReducers);
   useEffect(() => {
@@ -68,7 +71,15 @@ const HomePage = () => {
       };
     });
 const openModal = () => {
-    console.log("modla will be open");
+    setModalVisibility(true)
+}
+const closeModal = () => {
+    setModalVisibility(false);
+}
+const setNameValue =(value) =>{
+    console.log("the vale", value);
+    setModalVisibility(false)
+    dispatch(userActions.addNewUser(value))
 }
   return (
     <>
@@ -78,10 +89,11 @@ const openModal = () => {
           <Input placeholder="Search here"/>
           </Col>
           <Col span={8} style={{paddingLeft:"2%"}}>
-          <Button onClick={openModal()}>Add New User</Button>
+          <Button onClick={openModal}>Add New User</Button>
           </Col>
       </Row>
       <Table columns={columns} dataSource={userLists} />
+      <AddNewUserForm modalVisibility={modalVisibility} setModalVisibility={closeModal} setNameValue={setNameValue}/>
     </>
   );
 };

@@ -25,9 +25,17 @@ import axios from "axios";
             }
           } catch (err) {}
     }
+const addNewUser= async( details) => {
+    let users = [];
+    users = JSON.parse(localStorage.getItem("users"));
+let newListUsers = users.push(details);
+console.log("The ", users)
+return users;
+}
 const userServices ={
     authenticate,
-    userListService
+    userListService,
+    addNewUser
 }
 
 export default userServices;

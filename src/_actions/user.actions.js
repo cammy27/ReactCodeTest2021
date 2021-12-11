@@ -52,6 +52,7 @@ const addNewUser = (values) => {
                 console.log("the added", res)
                 dispatch(success(res));
                 localStorage.setItem('users', JSON.stringify(res)) 
+                alert("new user added")
             }
             else{
                 dispatch(failure());

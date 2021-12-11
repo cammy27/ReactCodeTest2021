@@ -19,6 +19,13 @@ code {
   align-items: center;
   height: 100vh;
 }
+.heading{
+  text-align:center;
+  color:blue;
+  font-weight:700;
+   margin-bottom:-10%;
+   margin-top:5%
+}
 /* home-page */
 .homepage-heading{
   display: flex;

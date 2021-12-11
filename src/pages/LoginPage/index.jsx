@@ -24,6 +24,7 @@ if(localStorage.getItem('loggedInUser')){
     
     return(
         <>
+        <h1 className="heading">Login Page</h1>
         <div className="login-page">
         <Form
       name="basic"

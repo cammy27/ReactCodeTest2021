@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import "antd/dist/antd.css";
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { PrivateRoute } from './_components/privateRoute';
+import LoginPage from "../src/pages/LoginPage/index";
+import {history} from "../src/_helpers/history";
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+                            <Switch>
+                                {/* <PrivateRoute exact path="/" component={HomePage} /> */}
+                                <Route exact path="/" component={LoginPage}/>
+                                <Route path="/login" component={LoginPage} />
+                                <PrivateRoute path="/home-page" component={HomePage} />
+                                {/* <Route path="/register" component={RegisterPage} /> */}
+                                <Redirect from="*" to="/" />
+                            </Switch>
+                        </Router>
   );
 }
 

@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* login page */
+.login-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* home-page */
+.homepage-heading{
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}

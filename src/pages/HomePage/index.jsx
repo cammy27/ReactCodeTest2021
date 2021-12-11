@@ -48,7 +48,6 @@ const HomePage = () => {
       key: "phoneNumber",
     },
   ];
-console.log("the ", user)
   const userLists =
     user &&
     user.map((details, index) => {
@@ -68,6 +67,9 @@ console.log("the ", user)
         phoneNumber: details.user.phone,
       };
     });
+const openModal = () => {
+    console.log("modla will be open");
+}
   return (
     <>
       <h1 className="homepage-heading"> Hello {authentication.user.username}</h1>
@@ -76,7 +78,7 @@ console.log("the ", user)
           <Input placeholder="Search here"/>
           </Col>
           <Col span={8} style={{paddingLeft:"2%"}}>
-          <Button>Add New User</Button>
+          <Button onClick={openModal()}>Add New User</Button>
           </Col>
       </Row>
       <Table columns={columns} dataSource={userLists} />
